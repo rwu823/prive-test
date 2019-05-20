@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link rel="stylesheet" href="%PUBLIC_URL%/fonts/Roboto.css">
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>JSON Form</title>
+</head>
+<body>
+    <noscript>
+        You need to enable JavaScript to run this app.
+    </noscript>
+
+    <json-form
+        initdata='{
+            "notional": 1.21,
+            "currency": "USD"
+        }'
+        schema='{
+           "type": "object",
+           "properties": {
+              "notional": {
+                 "type": "number"
+              },
+              "currency": {
+                 "type": "string",
+                 "enum": [
+                    "USD",
+                    "HKD",
+                    "EUR",
+                    "AUD",
+                    "JPY",
+                    "CNY"
+                 ]
+              },
+              "koLevel": {
+                 "type": "number"
+              },
+              "strikeLevel": {
+                 "type": "number"
+              },
+              "couponRate": {
+                 "type": "number"
+              },
+              "kiType": {
+                 "type": "string",
+                 "enum": [
+                    "none",
+                    "daily",
+                    "continuous",
+                    "maturity"
+                 ],
+                 "default": "none"
+              },
+              "knockInStartDate": {
+                 "type": "string",
+                 "format": "date"
+              },
+              "underlyings": {
+                 "type": "array",
+                 "items": {
+                    "type": "object",
+                    "properties": {
+                       "underlying:ISIN": {
+                          "type": "string"
+                       },
+                       "underlying:currency": {
+                          "type": "string",
+                          "enum": [
+                             "USD",
+                             "HKD",
+                             "EUR",
+                             "AUD",
+                             "JPY",
+                             "CNY"
+                          ]
+                       },
+                       "referencePrices": {
+                          "type": "number"
+                       }
+                    }
+                 }
+              },
+              "observationDates": {
+                 "type": "array",
+                 "items": {
+                    "type": "string",
+                    "format": "date"
+                 }
+              }
+           },
+           "required": [
+              "payoff-type",
+              "notional",
+              "currency"
+           ]
+        }'
+        uischema='{
+           "type": "VerticalLayout",
+           "elements": [
+              {
+                 "type": "Group",
+                 "label": "Payoff Fields",
+                 "elements": [
+                    {
+                       "type": "HorizontalLayout",
+                       "elements": [
+                          {
+                             "type": "Control",
+                             "scope": "#/properties/notional"
+                          },
+                          {
+                             "type": "Control",
+                             "scope": "#/properties/currency"
+                          }
+                       ]
+                    },
+                    {
+                       "type": "HorizontalLayout",
+                       "elements": [
+                          {
+                             "type": "Control",
+                             "scope": "#/properties/koLevel"
+                          },
+                          {
+                             "type": "Control",
+                             "scope": "#/properties/strikeLevel"
+                          },
+                          {
+                             "type": "Control",
+                             "scope": "#/properties/couponRate"
+                          }
+                       ]
+                    },
+                    {
+                       "type": "HorizontalLayout",
+                       "elements": [
+                          {
+                             "scope": "#/properties/kiType",
+                             "type": "Control"
+                          },
+                          {
+                             "type": "Control",
+                             "scope": "#/properties/knockInStartDate",
+                             "rule": {
+                                "effect": "DISABLE",
+                                "condition": {
+                                   "type": "LEAF",
+                                   "scope": "#/properties/kiType",
+                                   "expectedValue": "none"
+                                }
+                             }
+                          }
+                       ]
+                    }
+                 ]
+              },
+              {
+                 "type": "Group",
+                 "elements": [
+                    {
+                       "type": "Control",
+                       "label": "Underlyings",
+                       "scope": "#/properties/underlyings"
+                    }
+                 ]
+              },
+              {
+                 "type": "Group",
+                 "elements": [
+                    {
+                       "type": "Control",
+                       "label": "Observation Dates",
+                       "scope": "#/properties/observationDates"
+                    }
+                 ]
+              }
+           ]
+        }'
+    />
+</body>
+</html>

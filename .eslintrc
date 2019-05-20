@@ -1,0 +1,70 @@
+{
+  "extends": "react-app",
+  "env": {
+    "browser": true,
+    "jasmine": true,
+    "jest": true,
+    "jquery": true
+  },
+  "rules": {
+    "react/jsx-filename-extension": [1, {
+      "extensions": [".js", ".jsx"]
+    }],
+
+    "indent": ["error", 2],
+    "jsx-quotes": ["error", "prefer-double"],
+    "linebreak-style": ["error", "unix"],
+    "eqeqeq": "error",
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "no-extra-semi": "error",
+    "no-extra-boolean-cast": "error",
+    "no-unsafe-negation": "error",
+    "template-curly-spacing": ["error", "always"],
+    "object-curly-spacing": ["error", "always"],
+    "array-bracket-spacing": ["error", "never"],
+
+    "max-len": ["error", {
+      "code": 150,
+      "comments": 150,
+      "ignoreUrls": true,
+      "ignoreTemplateLiterals": true,
+      "ignoreRegExpLiterals": true
+    }],
+
+    "react/prop-types": [1, {}],
+    "react/jsx-max-props-per-line": [1, {
+      "maximum": 2,
+      "when": "multiline"
+    }],
+    "no-unused-vars": "warn",
+    "prefer-template": "warn",
+    "prefer-destructuring": "warn",
+    "no-param-reassign": ["error", { "props": false }],
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "LabeledStatement",
+        "message": "Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand."
+      },
+      {
+        "selector": "WithStatement",
+        "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
+      }
+    ],
+    "jsx-a11y/interactive-supports-focus": ["warn",
+      {
+        "tabbable": ["button","checkbox","link","searchbox","spinbutton","switch","textbox"]
+      }
+    ],
+
+    "jsx-a11y/anchor-is-valid": [ "warn", {
+      "aspects": [ "noHref", "invalidHref", "preferButton" ]
+    }],
+
+    "jsx-a11y/click-events-have-key-events" : "warn",
+    "class-methods-use-this" : "warn",
+
+    "react/no-find-dom-node" : "warn"
+  }
+}

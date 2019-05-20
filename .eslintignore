@@ -1,0 +1,2 @@
+# Files or directories to ignore eslint
+src/utilities/localize.js
