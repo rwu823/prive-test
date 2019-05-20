@@ -32,7 +32,7 @@
       "ignoreRegExpLiterals": true
     }],
 
-    "react/prop-types": [1, {}],
+    "react/prop-types": [0, { "ignore": ["children"]}],
     "react/jsx-max-props-per-line": [1, {
       "maximum": 2,
       "when": "multiline"

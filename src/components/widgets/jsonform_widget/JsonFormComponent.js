@@ -10,11 +10,7 @@ class JsonFormComponent extends Component {
     this.state = {
       dataSchema: {},
       dataUISchema: {}
-    }
-  }
-
-  componentWillReceiveProps(nextProps, nextContext) {
-
+    };
   }
 
   async componentWillMount() {
@@ -28,16 +24,37 @@ class JsonFormComponent extends Component {
   }
 
   render() {
-    // render resultData in json-form tag
-    window.document.getElementById(this.props.id).setAttribute('resultData', JSON.stringify(this.props.data.data, null, 2));
-
+    const { children } = this.props;
     return (
       <div>
         <JsonForms
           schema={this.state.dataSchema}
           uischema={this.state.dataUISchema}
-          path="data"
+          // schema={
+          //   {
+          //     'type': 'object',
+          //     'props': {
+          //       'auto-complete': {
+          //         'type': 'string',
+          //         'minLength': 3,
+          //         'description': 'Find launches... via SpaceX API'
+          //       },
+          //     },
+          //   }
+          // }
+          // uischema={
+          //   {
+          //     'type': 'VerticalLayout',
+          //     'elements': [
+          //       {
+          //         'type': 'Control',
+          //         'scope': '#/props/auto-complete'
+          //       }
+          //     ]
+          //   }
+          // }
         />
+
       </div>
     );
   }

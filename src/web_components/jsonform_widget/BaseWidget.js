@@ -22,7 +22,7 @@ class BaseWidget extends HTMLElement {
 
     const id = uniqid();
     const mountPoint = document.createElement('div');
-    mountPoint.setAttribute("id", "json-form");
+    mountPoint.setAttribute('id', 'json-form');
     this.appendChild(mountPoint);
 
     this.state = {
@@ -79,16 +79,16 @@ class BaseWidget extends HTMLElement {
     }
 
     switch (name) {
-      case "initdata" :
-        this.setInitData(newValue, false);
-        break;
-      case "schema" :
-        this.setSchema(newValue, false);
-        break;
-      case "uischema" :
-        this.setUISchema(newValue, false);
-        break;
-      default: break;
+    case 'initdata' :
+      this.setInitData(newValue, false);
+      break;
+    case 'schema' :
+      this.setSchema(newValue, false);
+      break;
+    case 'uischema' :
+      this.setUISchema(newValue, false);
+      break;
+    default: break;
     }
   }
 
