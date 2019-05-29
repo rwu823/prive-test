@@ -19,6 +19,7 @@ import {
   FETCH_SUGGESTION_LIST_STARTING,
   FETCH_SUGGESTION_LIST_SUCCESS,
   TYPING,
+  SELECT_ITEM,
 } from './redux/reducers';
 import { act, escap } from './utils';
 
@@ -141,6 +142,11 @@ const AutoComplete = ({
     $input.current.focus();
   }, [isCaseSensitive]);
 
+  const selectItem = index => ev => {
+    dispatch(act(SELECT_ITEM, suggestionList[index].mission_name));
+    $input.current.focus();
+  };
+
   return (
     <Div>
       <form>
@@ -179,7 +185,11 @@ const AutoComplete = ({
                 );
 
                 return (
-                  <li key={launch.flight_number} tabIndex={i}>
+                  <li
+                    key={launch.flight_number}
+                    tabIndex={i}
+                    onClick={selectItem(i)}
+                  >
                     <Light>{RegExp.$1}</Light>
                     {others}
                   </li>
